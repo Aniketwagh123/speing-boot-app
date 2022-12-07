@@ -38,6 +38,10 @@ public class UserController {
     public Users insertData(@RequestBody SensorData sensorData, @RequestParam int userid){
         return userDao.addsensordata(userid,sensorData);
     }
+    @PostMapping ("/postSensorData")
+    public Users insertSensorData(@RequestBody SensorData sensorData, @RequestParam int userid){
+        return userDao.addsensordata(userid,sensorData);
+    }
 
     @PostMapping("/see")          //Api endpoint or url for get request inside a bracket
     public String see(){
