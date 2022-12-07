@@ -50,7 +50,7 @@ public class UserController {
         return userDao.addsensordata(userid,sensorData1);
     }
 
-    @PostMapping("/see")          //Api endpoint or url for get request inside a bracket
+    @GetMapping("/see")          //Api endpoint or url for get request inside a bracket
     public String see(){
         return "Hello";
     }
