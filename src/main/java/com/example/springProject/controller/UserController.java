@@ -6,6 +6,7 @@ import com.example.springProject.model.users.UserDao;
 import com.example.springProject.model.users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -14,22 +15,22 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
-    @GetMapping("/Users/get-all")          //Api endpoint or url for get request inside a bracket
+    @GetMapping("/users/get-all")          //Api endpoint or url for get request inside a bracket
     public List<Users> getAllUsers(){
         return userDao.getAllUsers();
     }
 
-    @PostMapping("/Users/save")          //Api endpoint or url for get request inside a bracket
+    @PostMapping("/users/save")          //Api endpoint or url for get request inside a bracket
     public Users save(@RequestBody Users user){
         return userDao.saveUser(user);
     }
 
-    @GetMapping("/Users/username")          //Api endpoint or url for get request inside a bracket
+    @GetMapping("/users/username")          //Api endpoint or url for get request inside a bracket
     public Users findByUsername(@RequestParam String username){
         return userDao.findbyusername(username);
     }
 
-    @GetMapping("/Users/deviceId")          //Api endpoint or url for get request inside a bracket
+    @GetMapping("/users/deviceId")          //Api endpoint or url for get request inside a bracket
     public Boolean isUniqueDevice(@RequestParam String deviceId){
         return userDao.findbydeviceId(deviceId) == null;
     }
@@ -54,4 +55,12 @@ public class UserController {
     public String see(){
         return "Hello";
     }
+    @GetMapping(value = "/sees")          //Api endpoint or url for get request inside a bracket
+    public String upd(){
+        String uri = "http://192.168.1.4";
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri,String.class);
+        return result;
+    }
+
 }
