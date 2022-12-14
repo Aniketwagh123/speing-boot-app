@@ -14,7 +14,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserDao userDao;
-
     @GetMapping("/users/get-all")          //Api endpoint or url for get request inside a bracket
     public List<Users> getAllUsers(){
         return userDao.getAllUsers();
@@ -51,16 +50,24 @@ public class UserController {
         return userDao.addsensordata(userid,sensorData1);
     }
 
-    @GetMapping("/see")          //Api endpoint or url for get request inside a bracket
-    public String see(){
-        return "Hello";
-    }
-    @GetMapping(value = "/sees")          //Api endpoint or url for get request inside a bracket
-    public String upd(){
-        String uri = "http://192.168.1.4";
+
+//    @GetMapping("/see")          //Api endpoint or url for get request inside a bracket
+//    public String see(){
+//        return "Hello";
+//    }
+    @GetMapping(value = "/r1")          //Api endpoint or url for get request inside a bracket
+    public String relay1(@RequestParam String r1){
+        String uri = "https://script.google.com/macros/s/AKfycbzsfK6SS5EdscmDUd7j5i8CVpBe41vReAEZJYU-uurRkDsxyNe4O9qOiQildCzphfLqVQ/exec?r1="+r1;
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri,String.class);
-        return result;
+        Object result = restTemplate.getForObject(uri,String.class);
+        return result.toString();
+    }
+    @GetMapping(value = "/r2")          //Api endpoint or url for get request inside a bracket
+    public String relay2(@RequestParam String r2){
+        String uri = "https://script.google.com/macros/s/AKfycbzsfK6SS5EdscmDUd7j5i8CVpBe41vReAEZJYU-uurRkDsxyNe4O9qOiQildCzphfLqVQ/exec?r2="+r2;
+        RestTemplate restTemplate = new RestTemplate();
+        Object result = restTemplate.getForObject(uri,String.class);
+        return result.toString();
     }
 
 }
