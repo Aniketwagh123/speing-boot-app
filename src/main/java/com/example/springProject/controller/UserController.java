@@ -1,6 +1,8 @@
 package com.example.springProject.controller;
 
 
+import com.example.springProject.model.HomeAtomation.HomeAtomation;
+import com.example.springProject.model.HomeAtomation.HomeAtomationDao;
 import com.example.springProject.model.sensor_data.SensorData;
 import com.example.springProject.model.users.UserDao;
 import com.example.springProject.model.users.Users;
@@ -14,6 +16,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserDao userDao;
+    @Autowired
+    HomeAtomationDao homeAtomationDao;
     @GetMapping("/users/get-all")          //Api endpoint or url for get request inside a bracket
     public List<Users> getAllUsers(){
         return userDao.getAllUsers();
@@ -68,6 +72,11 @@ public class UserController {
         RestTemplate restTemplate = new RestTemplate();
         Object result = restTemplate.getForObject(uri,String.class);
         return result.toString();
+    }
+
+    @PutMapping ("/update")
+    public HomeAtomation update(@RequestBody HomeAtomation homeAtomation){
+        return homeAtomationDao.saveHomeAtomation(homeAtomation);
     }
 
 }
