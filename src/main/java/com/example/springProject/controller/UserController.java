@@ -81,8 +81,10 @@ public class UserController {
     }
 
     @GetMapping("/get-status")          //Api endpoint or url for get request inside a bracket
-    public Optional<HomeAtomation> getHomeAtomation(){
-        return homeAtomationDao.getHomeAtomation();
+    public String getHomeAtomation(){
+        Optional<HomeAtomation> homeAtomation = homeAtomationDao.getHomeAtomation();
+        String s = homeAtomation.get().getR1()+","+homeAtomation.get().getR2();
+        return s;
     }
 
 }
