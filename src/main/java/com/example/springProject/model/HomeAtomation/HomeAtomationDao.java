@@ -1,16 +1,10 @@
 package com.example.springProject.model.HomeAtomation;
 
 
-import com.example.springProject.model.sensor_data.SensorData;
-import com.example.springProject.model.users.UserRepository;
-import com.example.springProject.model.users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HomeAtomationDao {
@@ -19,6 +13,9 @@ public class HomeAtomationDao {
 
     public HomeAtomation saveHomeAtomation(HomeAtomation homeAtomation){
         return homeAtomationRepository.save(homeAtomation);
+    }
+    public Optional<HomeAtomation> getHomeAtomation(){
+        return homeAtomationRepository.findById(1);
     }
 //    public void delete(Users user){
 //        homeAtomationRepository.delete(user);

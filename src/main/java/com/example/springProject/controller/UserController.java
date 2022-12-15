@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -77,6 +78,11 @@ public class UserController {
     @PutMapping ("/update")
     public HomeAtomation update(@RequestBody HomeAtomation homeAtomation){
         return homeAtomationDao.saveHomeAtomation(homeAtomation);
+    }
+
+    @GetMapping("/get-status")          //Api endpoint or url for get request inside a bracket
+    public Optional<HomeAtomation> getHomeAtomation(){
+        return homeAtomationDao.getHomeAtomation();
     }
 
 }
