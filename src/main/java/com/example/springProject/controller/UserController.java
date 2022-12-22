@@ -54,6 +54,10 @@ public class UserController {
         sensorData1.setTemp(temp);
         return userDao.addsensordata(userid,sensorData1);
     }
+    @PostMapping ("/postSensorDataByDeviceId")
+    public Users insertSensorDataByDeviceId(@RequestBody SensorData sensorData, @RequestParam String deviceId){
+        return userDao.addSensorDataByDeviceId(deviceId,sensorData);
+    }
 
 
 //    @GetMapping("/see")          //Api endpoint or url for get request inside a bracket
